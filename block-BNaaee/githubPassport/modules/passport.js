@@ -30,16 +30,6 @@ passport.use(new GitHubStrategy({
     }
 ));
 
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
-
-passport.deserializeUser(function (id, done) {
-    User.findById(id, "name email username", function (err, user) {
-        done(err, user);
-    });
-});
-
 //google passport
 
 passport.use(new GoogleStrategy({
@@ -63,3 +53,14 @@ passport.use(new GoogleStrategy({
             console.error(err);
         }
     }));
+    
+
+    passport.serializeUser((user, done) => {
+        done(null, user.id);
+    });
+    
+    passport.deserializeUser(function (id, done) {
+        User.findById(id, "name email username", function (err, user) {
+            done(err, user);
+        });
+    });

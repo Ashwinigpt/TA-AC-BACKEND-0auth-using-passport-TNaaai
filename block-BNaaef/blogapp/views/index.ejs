@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog Application</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="flex justify-content align-items container">
+        <ul>
+          <li>
+            <a href="/">Blogs</a>
+          </li>
+        </ul>
+        <ul class="flex login">
+          <li>
+            <a href="/users/login">Login</a>
+          </li>
+          <li>
+            <a href="/users/register">Register</a>
+          </li>
+          <li>
+            <a href="/auth/github">Login with Github</a>
+          </li>
+          <li>
+            <a href="/auth/google">Login with Google</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <h1>Welcome to our website to read all the blogs.</h1>
+      <div class="flex justify-content align-items wrap">
+        <% blog.forEach((b) => { %>
+        <div class="blog">
+          <p>Title: <%= b.title %></p>
+          <p>Description: <%= b.description %></p>
+          <p>Author: <%= b.author %></p>
+          <a href="/blogs/<%= b.slug%>">
+            <button>Read More</button>
+          </a>
+        </div>
+        <% })%>
+      </div>
+    </main>
+  </body>
+</html>

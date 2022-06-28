@@ -16,7 +16,6 @@ router.get('/failure', (req, res) => {
 });
 
 // github passport
-
 router.get( '/auth/github', passport.authenticate( 'github', { scope: [ 'user:email' ] } ) );
 
 router.get( '/auth/github/callback', 
@@ -32,7 +31,6 @@ router.get( '/auth/github/callback',
 );
 
 // google passport
-
 router.get( '/auth/google', passport.authenticate( 'google', { scope: ['email', 'profile'] }) );
   
 router.get('/auth/google/callback',

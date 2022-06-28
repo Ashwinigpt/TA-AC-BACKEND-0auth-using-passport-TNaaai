@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -7,11 +8,10 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo') (session);
 var passport = require('passport');
+var pass = require('./modules/passport')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-require('dotenv').config();
 
 // db connection
 mongoose.connect(
@@ -19,8 +19,6 @@ mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true },
   (error) => console.log(error ? error : 'Connected to database')
 );
-
-require('./modules/passport');
 
 var app = express();
 
@@ -42,8 +40,8 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
